@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+cors:
+  allowed-origins: "*"
+  allowed-methods: "*"
+  allowed-headers: "*"
+  exposed-headers: "*"
+
+logging:
+  level:
+    software.amazon.awssdk: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5332/customer
+    username: mhu
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  main:
+    web-application-type: servlet
+
+
+aws:
+  region: us-west-1
+  s3:
+    buckets:
+      bucketName: fs-mhu-customer-test1
